@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Adivinanza } from 'src/app/models/adivinanza';
 import { AdivinanzaService } from 'src/app/services/adivinanza.service';
 
 @Component({
@@ -12,17 +11,11 @@ export class AdivinanzaComponent implements OnInit {
   numeroIngresado: number;
   numeroRandom: number;
   mensaje: any;
-  adivinanza: Adivinanza;
 
   constructor(private adivinanzaService: AdivinanzaService) {
   }
 
-  ngOnInit() {
-    this.adivinanza = {
-      numeroRandom: 0,
-      intentos: 0
-    };
-  }
+  ngOnInit() { }
 
   adivinarNumero(): void {
     this.adivinanzaService.enviarNumeroIngresado(this.numeroIngresado).subscribe(
