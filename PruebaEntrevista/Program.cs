@@ -12,6 +12,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IAdivinanzaService, AdivinanzaService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200") // URL de la aplicación Angular
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +32,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// policy CORS
+app.UseCors("AllowSpecificOrigin");
 
 app.MapControllers();
 

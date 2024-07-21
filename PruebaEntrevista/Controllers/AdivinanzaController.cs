@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PruebaEntrevista.Services;
 using PruebaEntrevista.Services.Interfaces;
 
 namespace PruebaEntrevista.Controllers
@@ -8,17 +9,26 @@ namespace PruebaEntrevista.Controllers
     [ApiController]
     public class AdivinanzaController : ControllerBase
     {
-        private readonly IAdivinanzaService ejercicioService;
+        private readonly IAdivinanzaService adivinanzaService;
 
-        public AdivinanzaController(IAdivinanzaService ejercicioService)
+        public AdivinanzaController(IAdivinanzaService adivinanzaService)
         {
-            this.ejercicioService = ejercicioService;
+            this.adivinanzaService = adivinanzaService;
         }
 
+        [Route("Adivinar")]
         [HttpPost]
-        public ActionResult AdivinarNumero([FromBody] int numeroIngresado) 
+        public IActionResult AdivinarNumero([FromBody] int numeroIngresado) 
         {
-            var mensaje = ejercicioService.AdivinarNumero(numeroIngresado);
+            var mensaje = adivinanzaService.AdivinarNumero(numeroIngresado);
+            return Ok(mensaje);
+        }
+
+        [Route("Reiniciar")]
+        [HttpPost]
+        public IActionResult ReiniciarJuego()
+        {
+            var mensaje = adivinanzaService.ReiniciarJuego();
             return Ok(mensaje);
         }
     }

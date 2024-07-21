@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Juego de Adivinar el Número</h1>
+  <div class="form-group">
+    <label for="numeroIngresado">Ingresa un número: </label>
+    <input type="number" id="numeroIngresado" [(ngModel)]="numeroIngresado" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="mensaje">{{ mensaje }}</label>
+  </div>
+  <button (click)="adivinarNumero()" class="btn btn-primary">Enviar</button>
+  <button (click)="reiniciarJuego()" class="btn btn-secondary">Reiniciar</button>
+</div>

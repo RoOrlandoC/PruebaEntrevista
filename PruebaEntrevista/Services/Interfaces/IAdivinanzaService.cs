@@ -3,5 +3,6 @@
     public interface IAdivinanzaService
     {
         string AdivinarNumero(int numeroUsuario);
+        string ReiniciarJuego();
     }
 }

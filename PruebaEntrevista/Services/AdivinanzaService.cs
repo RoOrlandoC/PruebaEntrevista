@@ -5,40 +5,47 @@ namespace PruebaEntrevista.Services
 {
     public class AdivinanzaService : IAdivinanzaService
     {
-        private EjercicioModel ejercicio;
+        private Adivinanza adivinanza;
         public AdivinanzaService()
         {
-            this.ejercicio = IniciarlizarObjeto();
+            this.adivinanza = IniciarlizarObjeto();
         }
 
-        public EjercicioModel IniciarlizarObjeto()
+        public Adivinanza IniciarlizarObjeto()
         {
-            EjercicioModel ejercicio = new EjercicioModel();
+            Adivinanza adivinanza = new Adivinanza();
 
-            return ejercicio;
+            return adivinanza;
+        }
+
+        public string ReiniciarJuego()
+        {
+            this.adivinanza = new Adivinanza();
+            return "Juego reiniciado";
         }
 
         public string AdivinarNumero(int numeroIngresado)
         {
             var mensaje = "";
-            ejercicio.Intentos++;
 
-            if (ejercicio.Intentos > 10)
+            adivinanza.Intentos++;
+
+            if (adivinanza.Intentos > 10)
             {
-                return mensaje = "Perdiste, 10 intentos. El numero era: " + ejercicio.NumeroRandom;
+                return mensaje = "Perdiste, llegaste a los 10 intentos. El numero era: " + adivinanza.NumeroRandom;
             }
 
-            if (numeroIngresado == ejercicio.NumeroRandom)
+            if (numeroIngresado == adivinanza.NumeroRandom)
             {
-                return mensaje = "Ganasteeeeeee" + " " + ejercicio.NumeroRandom;
+                return mensaje = "Ganasteeeeeee!!! El numero era: " + adivinanza.NumeroRandom;
             }
-            else if (numeroIngresado > ejercicio.NumeroRandom)
+            else if (numeroIngresado > adivinanza.NumeroRandom)
             {
-                return mensaje = "El numero es mayor " + ejercicio.Intentos + " " + ejercicio.NumeroRandom;
+                return mensaje = "El numero que elegiste es mayor, llevas " + adivinanza.Intentos + " intentos!";
             }
             else
             {
-                return mensaje = "El numero es menor" + ejercicio.Intentos + " " + ejercicio.NumeroRandom;
+                return mensaje = "El numero que elegiste es menor, llevas " + adivinanza.Intentos + " intentos!";
             }
 
         }
